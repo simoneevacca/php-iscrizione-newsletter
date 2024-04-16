@@ -1,3 +1,38 @@
+<?php
+
+$email = $_GET["email"];
+var_dump($email);
+
+$message = null;
+
+if (isset($email)) {
+
+    if (str_contains($email, "@") && str_contains($email, ".")) {
+        $message = 'OK';
+    } else {
+        $message = 'FAIL';
+    }
+    
+    $mailCheck = correctMail($email);
+}
+    
+    function correctMail($mail) {
+        if (str_contains($mail, "@") && str_contains($mail, ".")) {
+            return [
+                'text' => 'OK',
+                'bClass' => 'success'
+            ];
+        }
+        return [
+            'text' => 'FAIL',
+            'bClass' => 'danger'
+        ];
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,20 +49,26 @@
 
 
     <footer class="bg-dark">
-        <div class="container text-white d-flex justify-content-center text-center">
+        <div class="container text-white d-flex justify-content-center">
             <div class="row col-4">
-            <h2>Iscriviti alla newsletter</h2>
-            <p>Rimani aggiornato sulle Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam sequi rerum consectetur ratione non ipsum eum voluptate dolor? Soluta, quidem?</p>
-            <form action="">
-                <div class="mb-3">
-                    <label for="" class="form-label">Inseisci la tua Mail</label>
-                    <input type="text" class="form-control" name="mail" id="mail" aria-describedby="helpId"
-                        placeholder="Scrivi qui" />
-                </div>
-                <button type="submit" class="btn btn-primary">Iscriviti</button>
+                <h2>Iscriviti alla newsletter</h2>
+                <p>Rimani aggiornato sulle Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam sequi rerum
+                    consectetur ratione non ipsum eum voluptate dolor? Soluta, quidem?</p>
+                <form action="">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Inseisci la tua Mail</label>
+                        <input type="text" class="form-control" name="email" id="email" aria-describedby="helpId"
+                            placeholder="Scrivi qui" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Iscriviti</button>
 
 
-            </form>
+                </form>
+                <?php if (isset($message)): ?>
+                    <div class="alert alert-<?=$mailCheck['bClass'];?>" role="alert">
+                       <?= $mailCheck['text']; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
