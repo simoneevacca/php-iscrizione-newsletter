@@ -42,7 +42,7 @@ $newsletterCheck = correctMail($email, $thankyouPage);
                     <div class="mb-3">
                         <label for="" class="form-label">Inseisci la tua Mail</label>
                         <input type="text" class="form-control" name="email" id="email" aria-describedby="helpId"
-                            placeholder="Scrivi qui" />
+                            placeholder="Scrivi qui" value="<?= $newsletterCheck['mail'] ?>" />
                     </div>
                     <button type="submit" class="btn btn-primary">Iscriviti</button>
 
