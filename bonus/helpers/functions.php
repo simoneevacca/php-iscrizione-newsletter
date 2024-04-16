@@ -3,13 +3,10 @@
  * Generate an array with text and bootstrap class for create an alert message
  * @param string
  */
-function correctMail($mail)
+function correctMail($mail, $path)
 {
     if (str_contains($mail, "@") && str_contains($mail, ".")) {
-        return [
-            'text' => 'OK',
-            'bClass' => 'success'
-        ];
+        header("location: $path");
     }
     return [
         'text' => 'FAIL',
