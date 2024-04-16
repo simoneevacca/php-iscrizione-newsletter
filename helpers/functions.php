@@ -6,6 +6,7 @@
 function correctMail($mail)
 {
     if (str_contains($mail, "@") && str_contains($mail, ".")) {
+        header('location: ./thankyou.php');
         return [
             'text' => 'OK',
             'bClass' => 'success'
