@@ -1,33 +1,17 @@
 <?php
 
+require_once __DIR__ . '/helpers/functions.php';
+
+
 $email = $_GET["email"];
-var_dump($email);
 
-$message = null;
 
-if (isset($email)) {
+$alertMessage = null;
+$alertMessage = checkMail($email);
 
-    if (str_contains($email, "@") && str_contains($email, ".")) {
-        $message = 'OK';
-    } else {
-        $message = 'FAIL';
-    }
-    
-    $mailCheck = correctMail($email);
-}
-    
-    function correctMail($mail) {
-        if (str_contains($mail, "@") && str_contains($mail, ".")) {
-            return [
-                'text' => 'OK',
-                'bClass' => 'success'
-            ];
-        }
-        return [
-            'text' => 'FAIL',
-            'bClass' => 'danger'
-        ];
-}
+
+
+$newsletterCheck = correctMail($email);
 
 
 ?>
@@ -64,9 +48,9 @@ if (isset($email)) {
 
 
                 </form>
-                <?php if (isset($message)): ?>
-                    <div class="alert alert-<?=$mailCheck['bClass'];?>" role="alert">
-                       <?= $mailCheck['text']; ?>
+                <?php if (isset($alertMessage)): ?>
+                    <div class="alert alert-<?= $newsletterCheck['bClass']; ?>" role="alert">
+                        <?= $newsletterCheck['text']; ?>
                     </div>
                 <?php endif; ?>
             </div>
